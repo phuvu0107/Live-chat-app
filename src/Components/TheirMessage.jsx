@@ -5,23 +5,30 @@ const TheirMessage = ({ lastMessage, message }) => {
             {/* first message by the user */}
             {isFirstMessageByUser && (
                 <div
-                className="message-avatar"
-                style={{backgroundImage: `url(${message?.sender?.avatar})`}}
+                    className="message-avatar"
+                    style={{ backgroundImage: `url(${message?.sender?.avatar})` }}
                 />
             )}
             {/* general case */}
-            { message?.attachments?.length > 0
+            {message?.attachments?.length > 0
                 ? (
                     <img
-                    src={message.attachments[0].file}
-                    alt = 'message-attachment'
-                    className = 'message-image'
-                    style = {{ marinLeft: isFirstMessageByUser ? '4px' : '48px' }}
-                />
+                        src={message.attachments[0].file}
+                        alt='message-attachment'
+                        className='message-image'
+                        style={{ marinLeft: isFirstMessageByUser ? '4px' : '48px' }}
+                    />
                 ) : (
-                    <div className="message" style ={{ float: 'left', color: 'white', backgroundColor: '#CABCDC' }}>
-                        {message.text}
-                    </div>
+                    isFirstMessageByUser ? (
+                        <div className="message" style={{ float: 'left', color: 'white', backgroundColor: '#CABCDC' }}>
+                            {message.text}
+                        </div>
+                    ) : (
+                        <div className="message" style={{ float: 'left', marginLeft: '52px', color: 'white', backgroundColor: '#CABCDC' }}>
+                            {message.text}
+                        </div>
+                    )
+                    
                 )
             }
 
